@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee4">
+  <meta name="description" content="箱を開いて平らにした図の上で、面を回して六つの面の色をそろえるパズル。まん中の面を囲む四つの面と、外をぐるりと囲む裏の面がつながって動く。2×2 と 3×3。">
+  <title>ひらきばこ — 開いた箱の六面をそろえる</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ひらきばこ">
+  <meta property="og:title" content="ひらきばこ — 開いた箱の六面をそろえる">
+  <meta property="og:description" content="箱を開いて平らにした図の上で、面を回して六つの面の色をそろえるパズル。まん中の面を囲む四つの面と、外をぐるりと囲む裏の面がつながって動く。2×2 と 3×3。">
+  <meta property="og:url" content="https://t-of.github.io/hirakibako/">
+  <meta property="og:image" content="https://t-of.github.io/hirakibako/icons/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- apple-mobile-web-app-status-bar-style は付けない（black-translucent だと iOS 26 で上部が隠れる） -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ひらきばこ">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="./webapp-kit/webapp-kit.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="screen title" id="title">
+      <h1 class="title__name">ひらきばこ</h1>
+      <p class="title__lead">開いた箱の六面をそろえる</p>
+      <canvas class="sample" id="sample" aria-label="そろった形の見本。まん中に前、上下左右に上・下・左・右の面、外の大きな輪が裏の面"></canvas>
+      <ol class="how">
+        <li>面をタップすると右回りに 90° 回る。指で面の上をぐるっとなぞると、その向きに回る。</li>
+        <li>面を回すと、となりの面の色も一緒に動く（箱を開いた図なので、辺でつながっている）。</li>
+        <li>六つの面がそれぞれ 1 色になったらクリア。いちばん外の大きな輪が裏の面。</li>
+      </ol>
+      <div class="seg" id="sizeSeg" role="group" aria-label="大きさ">
+        <button data-size="2">2×2</button>
+        <button data-size="3">3×3</button>
+      </div>
+      <div class="seg" id="levelSeg" role="group" aria-label="段階">
+        <button data-level="easy">やさしい</button>
+        <button data-level="normal">ふつう</button>
+        <button data-level="hard">本気</button>
+      </div>
+      <p class="record" id="record" hidden></p>
+      <button class="primary" id="play">あそぶ</button>
+      <footer class="foot">
+        <div class="foot__row">
+          <button class="pill" data-wak="install" hidden>アプリにする</button>
+          <button class="pill" data-wak="share">共有</button>
+          <button class="pill" id="sound" aria-pressed="true">音 あり</button>
+        </div>
+        <a href="/">T.OF...</a> のアプリ
+      </footer>
+    </section>
+
+    <section class="screen game" id="game" hidden>
+      <header class="top">
+        <button class="pill" id="back">もどる</button>
+        <p class="count"><span id="moves">0</span> 手<small>崩した回数 <span id="scrambled">0</span></small></p>
+      </header>
+      <div class="board-area" id="area">
+        <div class="board-wrap" id="wrap">
+          <canvas class="board" id="board"></canvas>
+          <button class="back-face" id="backFace" aria-label="裏の面を右回りに回す">裏<span aria-hidden="true">↻</span></button>
+        </div>
+      </div>
+      <nav class="tools">
+        <button class="tool" id="undo">1 手もどす</button>
+        <button class="tool" id="restart">はじめから</button>
+        <button class="tool" id="another">べつの形</button>
+      </nav>
+
+      <div class="clear" id="clear" hidden>
+        <p class="clear__head">そろった</p>
+        <p class="clear__moves"><span id="clearMoves">0</span> 手</p>
+        <p class="clear__sub">崩した回数 <span id="clearScrambled">0</span><span class="clear__best" id="clearBest" hidden>記録更新</span></p>
+        <button class="primary" id="again">もう一度</button>
+        <div class="clear__row">
+          <button class="pill" id="shareClear">共有</button>
+          <button class="pill" id="toTitle">タイトルへ</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./webapp-kit/webapp-kit.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
