@@ -29,7 +29,7 @@ function setAudioSession(soundOn) {
 // ---- ここからアプリ本体 ----
 
 // 面の色（上・左・前・右・下・裏）。山吹・浅葱・桜・若葉・藤・墨
-const COLORS = ['#e3a21a', '#1f9a96', '#ee8aa9', '#8cb83a', '#7f62c4', '#3b3a46'];
+const COLORS = ['#e3a21a', '#1c8a8a', '#ee8aa9', '#8cb83a', '#7f62c4', '#3b3a46'];
 const LINE = 'rgba(45, 42, 38, 0.13)';
 const INK = '#2d2a26';
 const LEVELS = { easy: 'やさしい', normal: 'ふつう', hard: '本気' };
